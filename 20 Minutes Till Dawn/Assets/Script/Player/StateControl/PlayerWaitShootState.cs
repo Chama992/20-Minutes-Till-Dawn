@@ -21,7 +21,7 @@ public class PlayerWaitShootState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (Input.GetKey(KeyCode.Mouse0) && !player.weapon.IsLoading)
+        if (Input.GetKey(KeyCode.Mouse0) && !player.WeaponControl.IsLoading)
             stateMachine.ChangeState(player.ShootState);
     }
 }

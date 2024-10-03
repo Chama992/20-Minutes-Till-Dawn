@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameControll : MonoBehaviour
 {
     [SerializeField] private float gameOverTime;
     private float gameTimer;
@@ -37,5 +37,4 @@ public class GameController : MonoBehaviour
     {
         
     }
-
 }

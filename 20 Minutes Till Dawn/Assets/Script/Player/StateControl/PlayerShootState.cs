@@ -24,7 +24,7 @@ public class PlayerShootState : PlayerState
     {
         base.Update();
         float facingDir = player.facingDir;
-        if (!Input.GetKey(KeyCode.Mouse0) || player.weapon.IsLoading)
+        if (!Input.GetKey(KeyCode.Mouse0) || player.WeaponControl.IsLoading)
             stateMachine.ChangeState(player.IdleState);
         else
         {
@@ -36,8 +36,8 @@ public class PlayerShootState : PlayerState
             else
                 facingDir = -1;
             // check if you can shoot
-            if (!player.weapon.IsLoading && player.weapon.ShootIntervalTimer <0)
-                Shoot(player.weapon, mouseWorldPos - player.transform.position);
+            if (!player.WeaponControl.IsLoading && player.WeaponControl.ShootIntervalTimer <0)
+                Shoot(player.WeaponControl, mouseWorldPos - player.transform.position);
         }
         //move when shooting
         if (xInput != 0 || yInput != 0)

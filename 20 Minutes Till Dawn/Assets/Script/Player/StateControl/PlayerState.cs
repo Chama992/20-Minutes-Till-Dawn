@@ -27,6 +27,8 @@ public class PlayerState
     {
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.Space) && player.WeaponControl.BulletCurrentCount > 0)
+            stateMachine.ChangeState(player.SkillState);
     }
 
     public virtual void Exit()

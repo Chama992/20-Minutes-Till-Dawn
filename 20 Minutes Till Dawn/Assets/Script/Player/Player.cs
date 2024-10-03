@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
     public PlayerShootState ShootState { get; private set; }
+    public PlayerSkillState SkillState { get; private set; }
     #endregion
     #region MoveInfo
     [Header("MoveInfo")]
@@ -24,7 +25,12 @@ public class Player : MonoBehaviour
     public bool isFacingRight { get; private set; } = true;
     #endregion
     #region Weapon
-    public Weapon weapon { get; private set; }
+    public GameObject Weapon { get; private set; }
+    public Weapon WeaponControl { get; private set; }
+    #endregion
+    #region SkillInfo
+    [SerializeField] public float shootingSkillIntervalTime;
+    [SerializeField] public float skillMoveSpeed;
     #endregion
     private void Awake()
     {
@@ -32,7 +38,9 @@ public class Player : MonoBehaviour
         IdleState = new PlayerIdleState(this, StateMachine, "Idle");
         MoveState = new PlayerMoveState(this, StateMachine, "Move");
         ShootState = new PlayerShootState(this, StateMachine, "Shoot");
-        weapon = GameObject.FindWithTag("PlayerWeapon").GetComponent<Weapon>();
+        SkillState = new PlayerSkillState(this, StateMachine, "Skill");
+        Weapon = GameObject.FindWithTag("PlayerWeapon");
+        WeaponControl = Weapon.GetComponent<Weapon>();
     }
     // Start is called before the first frame update
     void Start()
