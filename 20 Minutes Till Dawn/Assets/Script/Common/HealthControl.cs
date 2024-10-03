@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthControl : MonoBehaviour
 {
     [SerializeField] public float maxHealthValue;
-    public float currentHealth { get; private set; }
+    [SerializeField] public float currentHealth;
     private void Start()
     {
         currentHealth = maxHealthValue;
@@ -13,7 +13,7 @@ public class HealthControl : MonoBehaviour
     private void Update()
     {
     }
-    public void GetHurt(float _damage)
+    public virtual void GetHurt(float _damage)
     {
         currentHealth -= _damage;
         if (currentHealth <= 0)

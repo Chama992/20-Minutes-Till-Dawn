@@ -7,17 +7,21 @@ public class Weapon : MonoBehaviour
     [Header("Bullet Info")]
     [SerializeField] public float damage;
     [SerializeField] public float shootingSpeed;
+    [SerializeField] public float bulletSpeed;
     [SerializeField] public int bulletTotalCount;
     [SerializeField] public int bulletCountPerShoot;
     [SerializeField] public float loadingTime;
     [SerializeField] public int BulletCurrentCount;
+    [SerializeField] public float ShootingScale;
     [SerializeField] public float LoadingTimer { get; private set; }
+    [SerializeField] public GameObject bullet;
     public bool IsLoading { get; private set; } = false;
     public bool FacingRight { get; private set; } = true;
     [SerializeField] public float ShootIntervalTimer { get; private set; }
     #region Conponents
     public Transform Owner { get; private set; }
     public Transform WeaponChild { get; private set; }
+    public Transform ShootingPoint { get; private set; }
     public Animator WeaponAnimator { get; private set; }
     #endregion
     // Start is called before the first frame update
@@ -27,6 +31,7 @@ public class Weapon : MonoBehaviour
         WeaponChild = transform.GetChild(0);
         Owner = GameObject.FindGameObjectWithTag("Player").transform;
         WeaponAnimator = WeaponChild.GetComponent<Animator>();
+        ShootingPoint = WeaponChild.GetChild(0);
     }
     // Update is called once per frame
     void Update()

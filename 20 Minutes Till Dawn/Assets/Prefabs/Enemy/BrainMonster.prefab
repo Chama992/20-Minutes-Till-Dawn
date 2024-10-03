@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 6943268642718066159}
   - component: {fileID: -7683949189517376492}
   - component: {fileID: -8154095396871373942}
-  - component: {fileID: -8327522536483231887}
+  - component: {fileID: 6159773514998847993}
+  - component: {fileID: 4068416050677313000}
   m_Layer: 0
   m_Name: BrainMonster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.38, y: -0.78, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 174532276032021329}
   m_Father: {fileID: 0}
@@ -47,11 +48,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: d902122753d63b94eafa6cca1c0a4aea, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -94,10 +95,10 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03899741, y: 0.048746977}
+  m_Offset: {x: 0.01, y: -0}
   serializedVersion: 2
-  m_Radius: 0.16657054
---- !u!114 &-8327522536483231887
+  m_Radius: 0.17729433
+--- !u!114 &6159773514998847993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,12 +107,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 4245595309348850830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb2b212f85f16d84baac0ecd34e6b66b, type: 3}
+  m_Script: {fileID: 11500000, guid: ee586c84072f22d42a106747fb48cca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthValue: 2
+  currentHealth: 0
+--- !u!114 &4068416050677313000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4245595309348850830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83edd998949101d46a253cba696b8e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  moveSpeed: 1.5
+  moveSpeed: 1.25
   attackIntervalTime: 1
+  guardDistance: 0
+  knockDistance: 0.75
+  knockTime: 0.5
 --- !u!1 &4920389125952828972
 GameObject:
   m_ObjectHideFlags: 0

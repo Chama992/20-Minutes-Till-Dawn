@@ -30,6 +30,7 @@ public class PlayerShootState : PlayerState
         {
             Vector3 mousePos = Input.mousePosition;
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.transform.position.z));
+            mouseWorldPos.z = 0;
             if (mouseWorldPos.x > player.transform.position.x)
                 facingDir = 1;
             else

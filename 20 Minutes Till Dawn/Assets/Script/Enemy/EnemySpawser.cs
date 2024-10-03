@@ -14,7 +14,7 @@ public class EnemySpawser : MonoBehaviour
 
     private float despawnDistance;
     [SerializeField] private int enemyCheckCountPerFrame;
-    [SerializeField] private int enemyCheckIdxPerFrame;
+   private int enemyCheckIdxPerFrame;
     
     void Start()
     {
