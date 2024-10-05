@@ -17,16 +17,28 @@ public class UIControl : MonoBehaviour
     public Transform ScrollViewContent;
     public UnityEngine.UI.Image Heart;
     public Canvas DeadCanvas;
+    public Texture2D cursorTexture;
     // Start is called before the first frame update
     private void Awake()
     {
         instance = this;
     }
-
+    private void Start()
+    {
+        UnityEngine.Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+    }
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void OnMouseEnter()
+    {
+        UnityEngine.Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+    }
+    private void OnMouseExit()
+    {
+        UnityEngine.Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto); ;
     }
     public void UpdateUILevel(float currentExp, float maxEXP, int level)
     {
