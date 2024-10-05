@@ -1,20 +1,20 @@
 # 20-Minutes-Till-Dawn
 # Day 1
-# 1.add player statemachine
-# 2.player mover and idle
-# 3.simple enemy spawner
-# 4.simple enemy behavior
-# 5.healthcontroller
-# Day2
-# 1.Weapon template
-# 2.Bullet template
-# 3.shootstate
-# 4.gamecontroller
-# Day3
-# 1.Enemy Wave
-# 2.Experience System
-# 3.Explode Enemy
-# Day4
-# 1.Shoot Enemy
-# 2.Tree Enemy
-# 3.UI
+# 1.玩家状态机初始化
+# 2.实现玩家移动与站立状态及其转换
+# 3.简易刷怪器
+# 4.敌人父类模板
+# 5.健康（血量）控制父类
+# Day 2
+# 1.武器父类及双枪
+# 2.子弹父类及双枪子弹
+# 3.玩家射击状态及转换 玩家技能状态及转换
+# 4.游戏控制器(开始、结束)
+# Day 3
+# 1.敌人按波次刷怪，刷怪器完善
+# 2.经验系统（本来用对象池实现 有bug放弃了）
+# 3.自爆敌人 大头怪敌人 敌人击退反馈
+# Day 4
+# 1.远程射击敌人
+# 2.树及生成方式
+# 3.局内外ui及控制
