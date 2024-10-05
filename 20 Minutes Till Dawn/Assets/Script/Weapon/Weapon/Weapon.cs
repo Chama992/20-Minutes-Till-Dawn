@@ -32,6 +32,7 @@ public class Weapon : MonoBehaviour
         Owner = GameObject.FindGameObjectWithTag("Player").transform;
         WeaponAnimator = WeaponChild.GetComponent<Animator>();
         ShootingPoint = WeaponChild.GetChild(0);
+        UIControl.instance.UpdateBullet(BulletCurrentCount, bulletTotalCount);
     }
     // Update is called once per frame
     void Update()
@@ -98,6 +99,7 @@ public class Weapon : MonoBehaviour
     {
         BulletCurrentCount -= bulletCountPerShoot;
         ShootIntervalTimer = 1 / shootingSpeed;
+        UIControl.instance.UpdateBullet(BulletCurrentCount, bulletTotalCount) ;
         //Debug.Log(BulletCurrentCount);
         if (BulletCurrentCount <= 0)
         {

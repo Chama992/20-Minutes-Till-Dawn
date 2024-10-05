@@ -24,15 +24,20 @@ public class ExperienceControll:MonoBehaviour
         }
         //jewels = new List<GameObject>();
     }
+    private void Start()
+    {
+        UIControl.instance.UpdateUILevel(CurrentExperience, explevels[Rank], Rank);
+    }
     public void AddExperience(float _experience)
     {
         CurrentExperience += _experience;
         if (CurrentExperience >= explevels[Rank] && Rank < levelCount)
         {
-            CurrentExperience = 0;
+            CurrentExperience = CurrentExperience - explevels[Rank];
             Rank += 1;
             gameObject.GetComponent<PlayerHealthControl>().AddHealth(1);
         }
+        UIControl.instance.UpdateUILevel(CurrentExperience, explevels[Rank], Rank);
     }
     public void GenerateJewel(Vector3 _position, float _experience)
     {

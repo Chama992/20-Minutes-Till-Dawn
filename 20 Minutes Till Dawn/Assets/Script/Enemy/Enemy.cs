@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     protected float knockTimeCounter;
     public int facingDir { get; private set; }
     public bool isFacingRight { get; private set; } = true;
-    void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     protected virtual void MoveToTarget()
     {
         if (target)
-            SetVelocity((target.position - transform.position).normalized.x, (target.position - transform.position).normalized.y, moveSpeed, moveSpeed);
+            SetVelocity((target.position - transform.position).normalized.x, (target.position - transform.position).normalized.y, moveSpeed * Random.Range(0.8f,1.2f), moveSpeed * Random.Range(0.8f, 1.2f));
     }
     protected virtual void Attack(GameObject _target)
     {

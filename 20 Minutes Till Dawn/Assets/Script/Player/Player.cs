@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     public PlayerMoveState MoveState { get; private set; }
     public PlayerShootState ShootState { get; private set; }
     public PlayerSkillState SkillState { get; private set; }
+    public PlayerDeadState DeadState { get; private set; }
     #endregion
     #region MoveInfo
     [Header("MoveInfo")]
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
         MoveState = new PlayerMoveState(this, StateMachine, "Move");
         ShootState = new PlayerShootState(this, StateMachine, "Shoot");
         SkillState = new PlayerSkillState(this, StateMachine, "Skill");
+        DeadState = new PlayerDeadState(this, StateMachine, "Dead");
         ExperienceControll = GetComponent<ExperienceControll>();
         Weapon = GameObject.FindWithTag("PlayerWeapon");
         WeaponControl = Weapon.GetComponent<Weapon>();
@@ -103,6 +106,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         

@@ -6,7 +6,7 @@ public class HealthControl : MonoBehaviour
 {
     [SerializeField] public float maxHealthValue;
     [SerializeField] public float currentHealth;
-    private void Start()
+    protected virtual void Start()
     {
         currentHealth = maxHealthValue;
     }

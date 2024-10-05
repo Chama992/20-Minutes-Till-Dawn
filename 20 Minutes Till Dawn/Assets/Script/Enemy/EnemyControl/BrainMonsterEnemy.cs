@@ -7,7 +7,7 @@ public class BrainMonsterEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if (!isKnocked)
+        if (!isKnocked && target)
             MoveToTarget();
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
