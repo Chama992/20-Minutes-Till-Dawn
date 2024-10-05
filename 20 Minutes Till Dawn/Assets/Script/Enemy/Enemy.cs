@@ -6,29 +6,34 @@ public class Enemy : MonoBehaviour
 {
     protected Transform target;
     protected Rigidbody2D rb;
+    protected Animator animator;
     [SerializeField] protected float damage;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float attackIntervalTime;
     protected float attackIntervalTimerCounter;
+    protected bool isAttack { get; private set; }
     [SerializeField] protected float guardDistance;
     [SerializeField] public float knockDistance;
     [SerializeField] public float knockTime;
+    [SerializeField] public float experience;
     protected Vector3 knockDir;
     protected bool isKnocked;
     protected float knockTimeCounter;
-
     public int facingDir { get; private set; }
     public bool isFacingRight { get; private set; } = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
         attackIntervalTimerCounter -= Time.deltaTime;
-        if (knockTimeCounter > 0)
+        if (attackIntervalTimerCounter < 0)
+            isAttack = false;
+        if (knockTimeCounter > 0 && isKnocked)
         {
             knockTimeCounter -= Time.deltaTime;
             KnockedMove();
@@ -44,13 +49,15 @@ public class Enemy : MonoBehaviour
     }
     protected virtual void MoveToTarget()
     {
-        SetVelocity((target.position - transform.position).normalized.x, (target.position - transform.position).normalized.y, moveSpeed, moveSpeed);
+        if (target)
+            SetVelocity((target.position - transform.position).normalized.x, (target.position - transform.position).normalized.y, moveSpeed, moveSpeed);
     }
     protected virtual void Attack(GameObject _target)
     {
         if (_target.CompareTag("Player") && attackIntervalTimerCounter < 0)
         {
             attackIntervalTimerCounter = attackIntervalTime;
+            isAttack = true;
             AttackEffet();
         }
     }
@@ -60,12 +67,6 @@ public class Enemy : MonoBehaviour
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && attackIntervalTimerCounter < 0)
-        {
-            attackIntervalTimerCounter = attackIntervalTime;
-            collision.gameObject.GetComponent<PlayerHealthControl>().GetHurt(1);
-            KnockBackControl(collision.transform.position - transform.position);
-        }
     }
     public void SetVelocity(float _xVelocity, float _yVelocity, float _xMoveSpeed = 0, float _yMoveSpeed = 0)
     {
@@ -82,7 +83,7 @@ public class Enemy : MonoBehaviour
         isFacingRight = !isFacingRight;
         transform.Rotate(0, 180, 0);
     }
-    private void FlipControl(float _x)
+    public void FlipControl(float _x)
     {
         if (_x > 0 && !isFacingRight && !isKnocked)
             Flip();
@@ -94,10 +95,10 @@ public class Enemy : MonoBehaviour
         if (knockDistance == 0)
             return;
         isKnocked = true;
-        knockDir = _knockDir;
+        knockDir = _knockDir.normalized;
         knockTimeCounter = knockTime;
     }
-    private void KnockedMove()
+    protected void KnockedMove()
     {
         float knockSpeed = knockDistance / knockTime;
         SetVelocity(knockDir.x, knockDir.y, knockSpeed, knockSpeed);

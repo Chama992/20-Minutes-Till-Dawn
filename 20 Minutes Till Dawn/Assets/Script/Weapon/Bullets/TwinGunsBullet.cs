@@ -8,7 +8,6 @@ public class TwinGunsBullet : Bullet
     {
         base.Start();
         BulletMove();
-
     }
 
     protected override void Update()
@@ -19,8 +18,7 @@ public class TwinGunsBullet : Bullet
     {
         base.EffectOfBullet(_target);
         Destroy(gameObject);
-       
-        _target.gameObject.GetComponent<HealthControl>().GetHurt(bulletDamage);
+        _target.gameObject.GetComponent<HealthControl>().GetHurt(BulletDamage);
         Enemy targetEnemy = _target.gameObject.GetComponent<Enemy>();
         targetEnemy.KnockBackControl(Rigidbody.velocity);
     }
@@ -28,6 +26,13 @@ public class TwinGunsBullet : Bullet
     protected override void BulletMove()
     {
         base.BulletMove();
-        Rigidbody.velocity = Vector3.Normalize(shootingDir) * shootingSpeed;
+        Rigidbody.velocity = Vector3.Normalize(ShootingDir) * ShootingSpeed;
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+        if (collision.gameObject.CompareTag("Enemy"))
+            EffectOfBullet(collision.transform);
     }
 }

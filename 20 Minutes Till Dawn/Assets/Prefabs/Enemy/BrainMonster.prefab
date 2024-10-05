@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee586c84072f22d42a106747fb48cca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthValue: 2
+  maxHealthValue: 5
   currentHealth: 0
 --- !u!114 &4068416050677313000
 MonoBehaviour:
@@ -130,6 +130,7 @@ MonoBehaviour:
   guardDistance: 0
   knockDistance: 0.75
   knockTime: 0.5
+  experience: 1
 --- !u!1 &4920389125952828972
 GameObject:
   m_ObjectHideFlags: 0

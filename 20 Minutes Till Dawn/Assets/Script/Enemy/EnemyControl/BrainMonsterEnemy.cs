@@ -9,14 +9,17 @@ public class BrainMonsterEnemy : Enemy
         base.Update();
         if (!isKnocked)
             MoveToTarget();
-        //if (Vector2.Distance(transform.position, target.position) < guardDistance)
-        //    Attack(target.gameObject);
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
+        if (collision.gameObject.CompareTag("Player") && attackIntervalTimerCounter < 0)
+        {
+            attackIntervalTimerCounter = attackIntervalTime;
+            collision.gameObject.GetComponent<PlayerHealthControl>().GetHurt(1);
+            KnockBackControl(transform.position - collision.transform.position);
+        }
     }
-
     protected override void Attack(GameObject _target)
     {
         base.Attack(_target);

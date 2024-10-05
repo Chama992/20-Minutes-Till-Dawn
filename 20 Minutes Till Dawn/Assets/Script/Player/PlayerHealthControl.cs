@@ -13,4 +13,13 @@ public class PlayerHealthControl : HealthControl
     {
         base.GetHurt(_damage);
     }
+    public void AddHealth(int _add)
+    {
+        if (currentHealth != maxHealthValue)
+            currentHealth += _add;
+    }
+    public void AddMaxHealth(int _add)
+    {
+        maxHealthValue += _add;
+    }
 }

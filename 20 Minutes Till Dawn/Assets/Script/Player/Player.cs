@@ -32,6 +32,11 @@ public class Player : MonoBehaviour
     [SerializeField] public float shootingSkillIntervalTime;
     [SerializeField] public float skillMoveSpeed;
     #endregion
+    #region ExperiencePoint
+    public ExperienceControll ExperienceControll { get; private set; }
+    private float checkTime = 0.2f;
+    private float checkTimeCounter;
+    #endregion
     private void Awake()
     {
         StateMachine = new PlayerStateMachine();
@@ -39,6 +44,7 @@ public class Player : MonoBehaviour
         MoveState = new PlayerMoveState(this, StateMachine, "Move");
         ShootState = new PlayerShootState(this, StateMachine, "Shoot");
         SkillState = new PlayerSkillState(this, StateMachine, "Skill");
+        ExperienceControll = GetComponent<ExperienceControll>();
         Weapon = GameObject.FindWithTag("PlayerWeapon");
         WeaponControl = Weapon.GetComponent<Weapon>();
     }
@@ -54,6 +60,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         StateMachine.currentState.Update();
+        CheckExperience();
     }
     public void SetVelocity(float _xVelocity, float _yVelocity, float _xMoveSpeed = 0, float _yMoveSpeed = 0, float facingDir = 0)
     {
@@ -78,5 +85,26 @@ public class Player : MonoBehaviour
             Flip();
         else if (_x < 0 && isFacingRight)
             Flip();
+    }
+    private void CheckExperience()
+    {
+        checkTimeCounter -= Time.deltaTime;
+        if (checkTimeCounter <= 0)
+        {
+            checkTimeCounter = checkTime;
+            Collider2D[] jewels = Physics2D.OverlapCircleAll(transform.position, ExperienceControll.experiencePickRange, ExperienceControll.experienceLayerMask.value);
+            foreach (var jewel in jewels)
+            {
+                ExperienceJewel jewelControl = jewel.gameObject.GetComponent<ExperienceJewel>();
+                if (jewelControl && !jewelControl.MovingToPlayer)
+                {
+                    jewelControl.MoveCheck(transform);
+                }
+            }
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
     }
 }

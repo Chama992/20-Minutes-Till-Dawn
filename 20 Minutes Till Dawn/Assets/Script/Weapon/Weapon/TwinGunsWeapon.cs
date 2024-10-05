@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class TwoGunWeapon : Weapon
@@ -16,5 +17,9 @@ public class TwoGunWeapon : Weapon
         Bullet bulletController2 = Instantiate(bullet, generatePosition2, Quaternion.Euler(_shootingDir)).GetComponent<Bullet>();
         bulletController1.BulletInitiate(_shootingDir, bulletSpeed, ShootingScale, damage);
         bulletController2.BulletInitiate(_shootingDir, bulletSpeed, ShootingScale, damage);
+    }
+    private void OnDrawGizmos()
+    {
+        
     }
 }

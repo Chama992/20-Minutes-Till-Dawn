@@ -7,6 +7,7 @@ public class BrainMonsterHealthControl : HealthControl
     public override void DeadCheck()
     {
         base.DeadCheck();
+        ExperienceControll.instance.GenerateJewel(transform.position, gameObject.GetComponent<Enemy>().experience);
         Destroy(gameObject);
     }
 
