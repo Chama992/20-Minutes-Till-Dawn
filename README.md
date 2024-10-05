@@ -10,3 +10,11 @@
 # 2.Bullet template
 # 3.shootstate
 # 4.gamecontroller
+# Day3
+# 1.Enemy Wave
+# 2.Experience System
+# 3.Explode Enemy
+# Day4
+# 1.Shoot Enemy
+# 2.Tree Enemy
+# 3.UI
