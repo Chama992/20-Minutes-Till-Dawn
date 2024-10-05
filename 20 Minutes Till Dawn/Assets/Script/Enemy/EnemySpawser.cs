@@ -155,7 +155,7 @@ public class EnemySpawser : MonoBehaviour
             {
                 Vector2 position = MapRandomPoint(minMap, maxMap);
                 Collider2D[] collision2D = Physics2D.OverlapCircleAll(position, treeGenerateDistance, treeLayerMask.value);
-                if (collision2D != null)
+                if (collision2D.Length == 0)
                 {
                     Instantiate(treeEnemy, position, Quaternion.identity);
                     break;
@@ -167,7 +167,6 @@ public class EnemySpawser : MonoBehaviour
             }
         }
     }
-
     private Vector2 MapRandomPoint(Transform _min, Transform _max)
     {
         Vector2 position;
